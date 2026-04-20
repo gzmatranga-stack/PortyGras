@@ -128,10 +128,14 @@ const bars: Bar[] = [
 interface BathroomModalProps {
   isOpen: boolean;
   onClose: () => void;
+  filteredBar?: Bar | null;
 }
 
-export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
+export default function BathroomModal({ isOpen, onClose, filteredBar }: BathroomModalProps) {
   const [selectedBar, setSelectedBar] = useState<Bar | null>(null);
+
+  // If filteredBar is provided, show it directly
+  const currentBar = filteredBar || selectedBar;
 
   if (!isOpen) return null;
 
@@ -154,7 +158,68 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
         </div>
 
         <div className="p-6">
-          {!selectedBar ? (
+          {currentBar ? (
+            <div>
+              <button
+                onClick={() => {
+                  setSelectedBar(null);
+                  onClose();
+                }}
+                className="mb-4 text-purple-600 hover:text-purple-800 font-semibold"
+              >
+                ← Back to List
+              </button>
+
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-bold text-2xl text-green-700">{currentBar.name}</h3>
+                  <p className="text-gray-700 mt-2">{currentBar.address}</p>
+                  <p className="text-gray-600">Bathroom Accessibility: {currentBar.bathroomAccessibility}</p>
+                  {(currentBar as any).distance && (
+                    <p className="text-blue-600 font-semibold">
+                      Distance: {(currentBar as any).distance.toFixed(1)} miles away
+                    </p>
+                  )}
+                </div>
+
+                <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl">★</span>
+                    <span className="text-lg font-bold text-yellow-700">
+                      {currentBar.rating}/5 Rating
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🧼</span>
+                    <span className="text-lg font-bold text-blue-700">
+                      Cleanliness: {currentBar.cleanliness}/5
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-lg text-gray-800 mb-3">Reviews:</h4>
+                  <div className="space-y-3">
+                    {currentBar.reviews.map((review, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-50 border-l-4 border-green-500 p-3 rounded"
+                      >
+                        <p className="text-gray-700 italic">"{review}"</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 mt-4">
+                  <p className="text-green-700 font-semibold">🍸 Bar & Restaurant</p>
+                </div>
+              </div>
+            </div>
+          ) : (
             <div className="space-y-3">
               {bars.map((bar) => (
                 <div
@@ -176,59 +241,6 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
                   </div>
                 </div>
               ))}
-            </div>
-          ) : (
-            <div>
-              <button
-                onClick={() => setSelectedBar(null)}
-                className="mb-4 text-purple-600 hover:text-purple-800 font-semibold"
-              >
-                ← Back to List
-              </button>
-
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-bold text-2xl text-green-700">{selectedBar.name}</h3>
-                  <p className="text-gray-700 mt-2">{selectedBar.address}</p>
-                  <p className="text-gray-600">Bathroom Accessibility: {selectedBar.bathroomAccessibility}</p>
-                </div>
-
-                <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-3xl">★</span>
-                    <span className="text-lg font-bold text-yellow-700">
-                      {selectedBar.rating}/5 Rating
-                    </span>
-                  </div>
-                </div>
-
-                <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">🧼</span>
-                    <span className="text-lg font-bold text-blue-700">
-                      Cleanliness: {selectedBar.cleanliness}/5
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-bold text-lg text-gray-800 mb-3">Reviews:</h4>
-                  <div className="space-y-3">
-                    {selectedBar.reviews.map((review, index) => (
-                      <div
-                        key={index}
-                        className="bg-gray-50 border-l-4 border-green-500 p-3 rounded"
-                      >
-                        <p className="text-gray-700 italic">"{review}"</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 mt-4">
-                  <p className="text-green-700 font-semibold">🍸 Bar & Restaurant</p>
-                </div>
-              </div>
             </div>
           )}
         </div>
