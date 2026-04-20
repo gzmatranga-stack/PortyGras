@@ -193,7 +193,7 @@ export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalPr
   console.log('FilterModal rendering the modal UI');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-[100] p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] p-4">
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full">
         <div className="sticky top-0 bg-white border-b-2 border-purple-300 p-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-purple-600">Find Your Bar</h2>

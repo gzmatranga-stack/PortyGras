@@ -140,7 +140,7 @@ export default function BathroomModal({ isOpen, onClose, filteredBar }: Bathroom
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-96 overflow-y-auto">
         <div className="sticky top-0 bg-white border-b-2 border-purple-300 p-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-purple-600">
