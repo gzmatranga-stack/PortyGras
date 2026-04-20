@@ -16,7 +16,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24 border-4 border-purple-500">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <h1 className="text-4xl font-bold">PortyGras</h1>
-        <p>Find restrooms in New Orleans during events</p>
+        <p>Find bars and restaurants in New Orleans during events</p>
       </div>
 
       <div className="relative flex place-items-center w-full">
@@ -33,7 +33,7 @@ export default function Home() {
           onClick={() => setIsModalOpen(true)}
           className="group rounded-lg border-2 border-green-500 px-5 py-4 transition-colors hover:border-green-700 hover:bg-green-50 font-semibold text-green-700"
         >
-          Find Bathroom
+          Find Bar
         </button>
       </div>
 

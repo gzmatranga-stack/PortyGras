@@ -13,98 +13,154 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
 });
 
-// Sample accessible bathrooms in New Orleans
-const bathrooms = [
+// Sample bars in New Orleans from the Google Sheet
+const bars = [
   {
     id: 1,
-    name: 'French Quarter Visitor Center',
-    address: '529 St Ann St',
-    lat: 29.9576,
-    lng: -90.2675,
-    accessible: true,
-    hours: '9 AM - 6 PM',
+    name: 'The Satsuma Cafe',
+    address: '3218 Dauphine St, New Orleans, LA 70117',
+    lat: 29.9685,
+    lng: -90.0582,
+    rating: 4.7,
+    reviews: [
+      'Great atmosphere and excellent cocktails. Highly recommend the Satsuma Sour!',
+      'Cozy spot with amazing food and drinks. The staff is super friendly.',
+      'Perfect place for a date night. Love the ambiance.',
+      'Delicious food and great selection of beers.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.8,
   },
   {
     id: 2,
-    name: 'Audubon Zoo Restrooms',
-    address: '6500 Magazine St',
-    lat: 29.9224,
-    lng: -90.2768,
-    accessible: true,
-    hours: '10 AM - 5 PM',
+    name: 'Carmo',
+    address: '527 Julia St, New Orleans, LA 70130',
+    lat: 29.9489,
+    lng: -90.0675,
+    rating: 4.5,
+    reviews: [
+      'Tropical vibes with amazing cocktails. The food is incredible!',
+      'One of the best bars in New Orleans. Great music and atmosphere.',
+      'Fantastic drinks and friendly staff. Highly recommend.',
+      'Beautiful decor and delicious tapas.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.6,
   },
   {
     id: 3,
-    name: 'City Park Recreation Center',
-    address: '1 Palm Dr',
-    lat: 30.1135,
-    lng: -90.1055,
-    accessible: true,
-    hours: '8 AM - 8 PM',
+    name: 'The Three Muses',
+    address: '536 Frenchmen St, New Orleans, LA 70116',
+    lat: 29.9627,
+    lng: -90.0609,
+    rating: 4.3,
+    reviews: [
+      'Live music venue with great drinks. Always a fun time!',
+      'Amazing live shows and decent bar food.',
+      'Crowded but worth it for the music scene.',
+      'Good selection of beers and cocktails.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.2,
   },
   {
     id: 4,
-    name: 'Mercedes-Benz Superdome',
-    address: '1500 Poydras St',
-    lat: 29.9270,
-    lng: -90.2816,
-    accessible: true,
-    hours: 'Event Hours',
+    name: 'Cochon',
+    address: '930 Tchoupitoulas St, New Orleans, LA 70130',
+    lat: 29.9406,
+    lng: -90.0694,
+    rating: 4.4,
+    reviews: [
+      'Amazing Cajun food and great beer selection.',
+      'Cozy atmosphere with delicious dishes.',
+      'Perfect for trying authentic New Orleans cuisine.',
+      'Friendly staff and excellent service.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.5,
   },
   {
     id: 5,
-    name: 'Preservation Hall',
-    address: '726 St Peter St',
-    lat: 29.9577,
-    lng: -90.2660,
-    accessible: true,
-    hours: '8 PM - 11 PM',
+    name: 'Sylvain',
+    address: '625 Chartres St, New Orleans, LA 70130',
+    lat: 29.9552,
+    lng: -90.0647,
+    rating: 4.6,
+    reviews: [
+      'Elegant French bistro with amazing wine selection.',
+      'Romantic setting with delicious French cuisine.',
+      'Excellent service and beautiful decor.',
+      'Highly recommend the escargot and steak.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.7,
   },
   {
     id: 6,
-    name: 'Fair Grounds Race Course',
-    address: '1751 Gentilly Blvd',
-    lat: 30.1122,
-    lng: -90.1222,
-    accessible: true,
-    hours: 'Event Hours',
+    name: 'Bacchanal Wine',
+    address: '600 Poland Ave, New Orleans, LA 70117',
+    lat: 29.9642,
+    lng: -90.0358,
+    rating: 4.8,
+    reviews: [
+      'Amazing wine selection and live music. Perfect spot!',
+      'Beautiful outdoor area with great vibes.',
+      'Excellent cheeses and charcuterie.',
+      'One of the best wine bars in the city.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.9,
   },
   {
     id: 7,
-    name: 'Canal Place Shopping Center',
-    address: '365 Canal St',
-    lat: 29.9594,
-    lng: -90.2697,
-    accessible: true,
-    hours: '10 AM - 9 PM',
+    name: 'The Spotted Cat',
+    address: '623 Frenchmen St, New Orleans, LA 70116',
+    lat: 29.9628,
+    lng: -90.0608,
+    rating: 4.2,
+    reviews: [
+      'Great live jazz music and fun atmosphere.',
+      'Crowded but authentic New Orleans experience.',
+      'Good drinks and lively crowd.',
+      'Classic Frenchmen Street bar.',
+    ],
+    bathroomAccessibility: 'Limited accessibility',
+    cleanliness: 3.8,
   },
   {
     id: 8,
-    name: 'New Orleans Jazz Museum',
-    address: '400 Esplanade Ave',
-    lat: 29.9585,
-    lng: -90.2609,
-    accessible: true,
-    hours: '10 AM - 6 PM',
+    name: 'Carmo Tropical',
+    address: '527 Julia St, New Orleans, LA 70130',
+    lat: 29.9489,
+    lng: -90.0675,
+    rating: 4.5,
+    reviews: [
+      'Tropical paradise with amazing cocktails.',
+      'Great food and vibrant atmosphere.',
+      'Perfect for a night out.',
+      'Friendly staff and delicious dishes.',
+    ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.6,
   },
 ];
 
-function BathroomMapContent() {
+function BarMapContent() {
   return (
     <>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {bathrooms.map((bathroom) => (
-        <Marker key={bathroom.id} position={[bathroom.lat, bathroom.lng]}>
+      {bars.map((bar) => (
+        <Marker key={bar.id} position={[bar.lat, bar.lng]}>
           <Popup>
             <div className="bg-white p-3 rounded">
-              <h3 className="font-bold text-green-600">{bathroom.name}</h3>
-              <p className="text-sm text-gray-700">{bathroom.address}</p>
+              <h3 className="font-bold text-green-600">{bar.name}</h3>
+              <p className="text-sm text-gray-700">{bar.address}</p>
               <p className="text-sm text-gray-600">
-                <strong>Hours:</strong> {bathroom.hours}
+                <strong>Rating:</strong> {bar.rating}/5 ⭐
               </p>
-              <p className="text-sm text-green-600 mt-2">♿ Accessible</p>
+              <p className="text-sm text-green-600 mt-2">🍸 Bar</p>
             </div>
           </Popup>
         </Marker>
@@ -130,7 +186,7 @@ export default function BathroomMap() {
       zoom={12}
       style={{ height: '100%', width: '100%' }}
     >
-      <BathroomMapContent />
+      <BarMapContent />
     </MapContainer>
   );
 }

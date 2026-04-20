@@ -1,118 +1,127 @@
 import { useState } from 'react';
 
-interface Bathroom {
+interface Bar {
   id: number;
   name: string;
   address: string;
-  hours: string;
   rating: number;
   reviews: string[];
+  bathroomAccessibility: string;
+  cleanliness: number;
 }
 
-const bathrooms: Bathroom[] = [
+const bars: Bar[] = [
   {
     id: 1,
-    name: 'French Quarter Visitor Center',
-    address: '529 St Ann St, New Orleans, LA 70116',
-    hours: '9 AM - 6 PM',
-    rating: 4.8,
+    name: 'The Satsuma Cafe',
+    address: '3218 Dauphine St, New Orleans, LA 70117',
+    rating: 4.7,
     reviews: [
-      'Very clean and well-maintained! Staff was helpful.',
-      'Perfect location in the French Quarter with accessible features.',
-      'Wheelchair accessible with plenty of space.',
-      'The facilities were excellent and modern.',
+      'Great atmosphere and excellent cocktails. Highly recommend the Satsuma Sour!',
+      'Cozy spot with amazing food and drinks. The staff is super friendly.',
+      'Perfect place for a date night. Love the ambiance.',
+      'Delicious food and great selection of beers.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.8,
   },
   {
     id: 2,
-    name: 'Audubon Zoo Restrooms',
-    address: '6500 Magazine St, New Orleans, LA 70118',
-    hours: '10 AM - 5 PM',
-    rating: 4.6,
+    name: 'Carmo',
+    address: '527 Julia St, New Orleans, LA 70130',
+    rating: 4.5,
     reviews: [
-      'Clean and accessible throughout the zoo.',
-      'Great facilities for families.',
-      'Well-marked accessible restrooms.',
-      'Staff very accommodating.',
+      'Tropical vibes with amazing cocktails. The food is incredible!',
+      'One of the best bars in New Orleans. Great music and atmosphere.',
+      'Fantastic drinks and friendly staff. Highly recommend.',
+      'Beautiful decor and delicious tapas.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.6,
   },
   {
     id: 3,
-    name: 'City Park Recreation Center',
-    address: '1 Palm Dr, New Orleans, LA 70124',
-    hours: '8 AM - 8 PM',
-    rating: 4.7,
+    name: 'The Three Muses',
+    address: '536 Frenchmen St, New Orleans, LA 70116',
+    rating: 4.3,
     reviews: [
-      'Excellent accessible facilities.',
-      'Modern and clean.',
-      'Great for visitors with mobility needs.',
-      'Highly recommend!',
+      'Live music venue with great drinks. Always a fun time!',
+      'Amazing live shows and decent bar food.',
+      'Crowded but worth it for the music scene.',
+      'Good selection of beers and cocktails.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.2,
   },
   {
     id: 4,
-    name: 'Mercedes-Benz Superdome',
-    address: '1500 Poydras St, New Orleans, LA 70112',
-    hours: 'Event Hours',
-    rating: 4.5,
+    name: 'Cochon',
+    address: '930 Tchoupitoulas St, New Orleans, LA 70130',
+    rating: 4.4,
     reviews: [
-      'Easy accessible access during events.',
-      'Clean and spacious.',
-      'Multiple accessible options available.',
-      'Good customer service.',
+      'Amazing Cajun food and great beer selection.',
+      'Cozy atmosphere with delicious dishes.',
+      'Perfect for trying authentic New Orleans cuisine.',
+      'Friendly staff and excellent service.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.5,
   },
   {
     id: 5,
-    name: 'Preservation Hall',
-    address: '726 St Peter St, New Orleans, LA 70116',
-    hours: '8 PM - 11 PM',
-    rating: 4.4,
+    name: 'Sylvain',
+    address: '625 Chartres St, New Orleans, LA 70130',
+    rating: 4.6,
     reviews: [
-      'Historic venue with accessible restrooms.',
-      'Great jazz music atmosphere.',
-      'Friendly staff.',
-      'Limited but adequate facilities.',
+      'Elegant French bistro with amazing wine selection.',
+      'Romantic setting with delicious French cuisine.',
+      'Excellent service and beautiful decor.',
+      'Highly recommend the escargot and steak.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.7,
   },
   {
     id: 6,
-    name: 'Fair Grounds Race Course',
-    address: '1751 Gentilly Blvd, New Orleans, LA 70122',
-    hours: 'Event Hours',
-    rating: 4.6,
+    name: 'Bacchanal Wine',
+    address: '600 Poland Ave, New Orleans, LA 70117',
+    rating: 4.8,
     reviews: [
-      'Great access during events.',
-      'Clean and modern facilities.',
-      'Staff knowledgeable about accessibility.',
-      'Excellent signage.',
+      'Amazing wine selection and live music. Perfect spot!',
+      'Beautiful outdoor area with great vibes.',
+      'Excellent cheeses and charcuterie.',
+      'One of the best wine bars in the city.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.9,
   },
   {
     id: 7,
-    name: 'Canal Place Shopping Center',
-    address: '365 Canal St, New Orleans, LA 70130',
-    hours: '10 AM - 9 PM',
-    rating: 4.7,
+    name: 'The Spotted Cat',
+    address: '623 Frenchmen St, New Orleans, LA 70116',
+    rating: 4.2,
     reviews: [
-      'Shopping center with excellent accessible restrooms.',
-      'Central location convenient for visitors.',
-      'Always clean and well-maintained.',
-      'Multiple facilities available.',
+      'Great live jazz music and fun atmosphere.',
+      'Crowded but authentic New Orleans experience.',
+      'Good drinks and lively crowd.',
+      'Classic Frenchmen Street bar.',
     ],
+    bathroomAccessibility: 'Limited accessibility',
+    cleanliness: 3.8,
   },
   {
     id: 8,
-    name: 'New Orleans Jazz Museum',
-    address: '400 Esplanade Ave, New Orleans, LA 70116',
-    hours: '10 AM - 6 PM',
-    rating: 4.8,
+    name: 'Carmo Tropical',
+    address: '527 Julia St, New Orleans, LA 70130',
+    rating: 4.5,
     reviews: [
-      'Museum quality facilities.',
-      'Exceptional accessibility features.',
-      'Beautiful and clean.',
-      'Staff very attentive to visitor needs.',
+      'Tropical paradise with amazing cocktails.',
+      'Great food and vibrant atmosphere.',
+      'Perfect for a night out.',
+      'Friendly staff and delicious dishes.',
     ],
+    bathroomAccessibility: 'Wheelchair accessible',
+    cleanliness: 4.6,
   },
 ];
 
@@ -122,7 +131,7 @@ interface BathroomModalProps {
 }
 
 export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
-  const [selectedBathroom, setSelectedBathroom] = useState<Bathroom | null>(null);
+  const [selectedBar, setSelectedBar] = useState<Bar | null>(null);
 
   if (!isOpen) return null;
 
@@ -131,11 +140,11 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
       <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-96 overflow-y-auto">
         <div className="sticky top-0 bg-white border-b-2 border-purple-300 p-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-purple-600">
-            {selectedBathroom ? selectedBathroom.name : 'Accessible Restrooms in New Orleans'}
+            {selectedBar ? selectedBar.name : 'Bars in New Orleans'}
           </h2>
           <button
             onClick={() => {
-              setSelectedBathroom(null);
+              setSelectedBar(null);
               onClose();
             }}
             className="text-gray-600 hover:text-gray-900 text-2xl font-bold"
@@ -145,23 +154,24 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
         </div>
 
         <div className="p-6">
-          {!selectedBathroom ? (
+          {!selectedBar ? (
             <div className="space-y-3">
-              {bathrooms.map((bathroom) => (
+              {bars.map((bar) => (
                 <div
-                  key={bathroom.id}
-                  onClick={() => setSelectedBathroom(bathroom)}
+                  key={bar.id}
+                  onClick={() => setSelectedBar(bar)}
                   className="border-2 border-green-300 rounded-lg p-4 hover:bg-green-50 cursor-pointer transition-colors"
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-bold text-green-700">{bathroom.name}</h3>
-                      <p className="text-sm text-gray-700 mt-1">{bathroom.address}</p>
-                      <p className="text-sm text-gray-600">Hours: {bathroom.hours}</p>
+                      <h3 className="font-bold text-green-700">{bar.name}</h3>
+                      <p className="text-sm text-gray-700 mt-1">{bar.address}</p>
+                      <p className="text-sm text-gray-600">Bathroom: {bar.bathroomAccessibility}</p>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-yellow-500">★</div>
-                      <p className="text-sm font-semibold text-gray-700">{bathroom.rating}/5</p>
+                      <p className="text-sm font-semibold text-gray-700">{bar.rating}/5</p>
+                      <p className="text-sm text-blue-600">Clean: {bar.cleanliness}/5</p>
                     </div>
                   </div>
                 </div>
@@ -170,7 +180,7 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
           ) : (
             <div>
               <button
-                onClick={() => setSelectedBathroom(null)}
+                onClick={() => setSelectedBar(null)}
                 className="mb-4 text-purple-600 hover:text-purple-800 font-semibold"
               >
                 ← Back to List
@@ -178,16 +188,25 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
 
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-bold text-2xl text-green-700">{selectedBathroom.name}</h3>
-                  <p className="text-gray-700 mt-2">{selectedBathroom.address}</p>
-                  <p className="text-gray-600">Hours: {selectedBathroom.hours}</p>
+                  <h3 className="font-bold text-2xl text-green-700">{selectedBar.name}</h3>
+                  <p className="text-gray-700 mt-2">{selectedBar.address}</p>
+                  <p className="text-gray-600">Bathroom Accessibility: {selectedBar.bathroomAccessibility}</p>
                 </div>
 
                 <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">
                   <div className="flex items-center gap-2">
                     <span className="text-3xl">★</span>
                     <span className="text-lg font-bold text-yellow-700">
-                      {selectedBathroom.rating}/5 Rating
+                      {selectedBar.rating}/5 Rating
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🧼</span>
+                    <span className="text-lg font-bold text-blue-700">
+                      Cleanliness: {selectedBar.cleanliness}/5
                     </span>
                   </div>
                 </div>
@@ -195,7 +214,7 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
                 <div>
                   <h4 className="font-bold text-lg text-gray-800 mb-3">Reviews:</h4>
                   <div className="space-y-3">
-                    {selectedBathroom.reviews.map((review, index) => (
+                    {selectedBar.reviews.map((review, index) => (
                       <div
                         key={index}
                         className="bg-gray-50 border-l-4 border-green-500 p-3 rounded"
@@ -207,7 +226,7 @@ export default function BathroomModal({ isOpen, onClose }: BathroomModalProps) {
                 </div>
 
                 <div className="bg-green-50 border-2 border-green-500 rounded-lg p-4 mt-4">
-                  <p className="text-green-700 font-semibold">♿ Wheelchair Accessible</p>
+                  <p className="text-green-700 font-semibold">🍸 Bar & Restaurant</p>
                 </div>
               </div>
             </div>
