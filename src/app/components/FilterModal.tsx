@@ -29,12 +29,7 @@ const bars: Bar[] = [
     lat: 29.9685,
     lng: -90.0582,
     rating: 4.7,
-    reviews: [
-      'Great atmosphere and excellent cocktails. Highly recommend the Satsuma Sour!',
-      'Cozy spot with amazing food and drinks. The staff is super friendly.',
-      'Perfect place for a date night. Love the ambiance.',
-      'Delicious food and great selection of beers.',
-    ],
+    reviews: ['Great atmosphere!', 'Excellent cocktails!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.8,
   },
@@ -45,12 +40,7 @@ const bars: Bar[] = [
     lat: 29.9489,
     lng: -90.0675,
     rating: 4.5,
-    reviews: [
-      'Tropical vibes with amazing cocktails. The food is incredible!',
-      'One of the best bars in New Orleans. Great music and atmosphere.',
-      'Fantastic drinks and friendly staff. Highly recommend.',
-      'Beautiful decor and delicious tapas.',
-    ],
+    reviews: ['Tropical vibes!', 'Amazing cocktails!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.6,
   },
@@ -61,12 +51,7 @@ const bars: Bar[] = [
     lat: 29.9627,
     lng: -90.0609,
     rating: 4.3,
-    reviews: [
-      'Live music venue with great drinks. Always a fun time!',
-      'Amazing live shows and decent bar food.',
-      'Crowded but worth it for the music scene.',
-      'Good selection of beers and cocktails.',
-    ],
+    reviews: ['Live music!', 'Great drinks!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.2,
   },
@@ -77,12 +62,7 @@ const bars: Bar[] = [
     lat: 29.9406,
     lng: -90.0694,
     rating: 4.4,
-    reviews: [
-      'Amazing Cajun food and great beer selection.',
-      'Cozy atmosphere with delicious dishes.',
-      'Perfect for trying authentic New Orleans cuisine.',
-      'Friendly staff and excellent service.',
-    ],
+    reviews: ['Amazing Cajun food!', 'Great beer selection!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.5,
   },
@@ -93,12 +73,7 @@ const bars: Bar[] = [
     lat: 29.9552,
     lng: -90.0647,
     rating: 4.6,
-    reviews: [
-      'Elegant French bistro with amazing wine selection.',
-      'Romantic setting with delicious French cuisine.',
-      'Excellent service and beautiful decor.',
-      'Highly recommend the escargot and steak.',
-    ],
+    reviews: ['Elegant French bistro!', 'Amazing wine!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.7,
   },
@@ -109,12 +84,7 @@ const bars: Bar[] = [
     lat: 29.9642,
     lng: -90.0358,
     rating: 4.8,
-    reviews: [
-      'Amazing wine selection and live music. Perfect spot!',
-      'Beautiful outdoor area with great vibes.',
-      'Excellent cheeses and charcuterie.',
-      'One of the best wine bars in the city.',
-    ],
+    reviews: ['Amazing wine selection!', 'Beautiful outdoor area!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.9,
   },
@@ -125,12 +95,7 @@ const bars: Bar[] = [
     lat: 29.9628,
     lng: -90.0608,
     rating: 4.2,
-    reviews: [
-      'Great live jazz music and fun atmosphere.',
-      'Crowded but authentic New Orleans experience.',
-      'Good drinks and lively crowd.',
-      'Classic Frenchmen Street bar.',
-    ],
+    reviews: ['Great live jazz!', 'Fun atmosphere!'],
     bathroomAccessibility: 'Limited accessibility',
     cleanliness: 3.8,
   },
@@ -141,20 +106,14 @@ const bars: Bar[] = [
     lat: 29.9489,
     lng: -90.0675,
     rating: 4.5,
-    reviews: [
-      'Tropical paradise with amazing cocktails.',
-      'Great food and vibrant atmosphere.',
-      'Perfect for a night out.',
-      'Friendly staff and delicious dishes.',
-    ],
+    reviews: ['Tropical paradise!', 'Perfect for a night out!'],
     bathroomAccessibility: 'Wheelchair accessible',
     cleanliness: 4.6,
   },
 ];
 
-// Haversine formula to calculate distance between two points
 function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 3959; // Radius of Earth in miles
+  const R = 3959;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLng = (lng2 - lng1) * Math.PI / 180;
   const a =
@@ -166,6 +125,8 @@ function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
 }
 
 export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalProps) {
+  console.log('FilterModal component called with isOpen:', isOpen);
+
   const [rating, setRating] = useState<number>(3);
   const [address, setAddress] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -177,7 +138,6 @@ export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalPr
     setError('');
 
     try {
-      // Geocode the address using Nominatim (OpenStreetMap)
       const response = await axios.get('https://nominatim.openstreetmap.org/search', {
         params: {
           q: address + ', New Orleans, LA',
@@ -195,7 +155,6 @@ export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalPr
       const userLat = parseFloat(response.data[0].lat);
       const userLng = parseFloat(response.data[0].lon);
 
-      // Filter bars by rating and find the closest one
       const eligibleBars = bars.filter(bar => bar.rating >= rating);
 
       if (eligibleBars.length === 0) {
@@ -215,7 +174,6 @@ export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalPr
         }
       }
 
-      // Add distance to the bar object
       const barWithDistance = { ...closestBar, distance: minDistance };
 
       onFilter(barWithDistance);
@@ -227,14 +185,27 @@ export default function FilterModal({ isOpen, onClose, onFilter }: FilterModalPr
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    console.log('FilterModal returning null because isOpen is false');
+    return null;
+  }
+
+  console.log('FilterModal rendering the modal UI');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4">
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-purple-600 mb-4">Filter Bars</h2>
+        <div className="sticky top-0 bg-white border-b-2 border-purple-300 p-6 flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-purple-600">Find Your Bar</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-600 hover:text-gray-900 text-2xl font-bold"
+          >
+            ✕
+          </button>
+        </div>
 
+        <div className="p-6 max-h-96 overflow-y-auto">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">

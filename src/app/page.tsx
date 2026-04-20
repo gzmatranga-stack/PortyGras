@@ -36,7 +36,10 @@ export default function Home() {
 
       <div className="mt-8 mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left gap-4">
         <button
-          onClick={() => setIsFilterOpen(true)}
+          onClick={() => {
+            console.log('Filter button clicked');
+            setIsFilterOpen(true);
+          }}
           className="group rounded-lg border-2 border-green-500 px-5 py-4 transition-colors hover:border-green-700 hover:bg-green-50 font-semibold text-green-700"
         >
           Filter
