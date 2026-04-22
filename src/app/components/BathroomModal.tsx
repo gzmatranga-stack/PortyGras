@@ -4,6 +4,8 @@ interface Bar {
   id: number;
   name: string;
   address: string;
+  lat: number;
+  lng: number;
   rating: number;
   reviews: string[];
   bathroomAccessibility: string;
@@ -15,6 +17,8 @@ const bars: Bar[] = [
     id: 1,
     name: 'The Boot',
     address: '1039 Broadway St, New Orleans, LA',
+    lat: 29.9408240,
+    lng: -90.1238590,
     rating: 4,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -28,6 +32,8 @@ const bars: Bar[] = [
     id: 2,
     name: 'Cooter Brown\'s',
     address: '509 S Carrollton Ave, New Orleans, LA',
+    lat: 29.9425278,
+    lng: -90.1343928,
     rating: 4,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -40,6 +46,8 @@ const bars: Bar[] = [
     id: 3,
     name: 'The Cure',
     address: '4905 Freret St, New Orleans, LA',
+    lat: 29.9350262,
+    lng: -90.1075469,
     rating: 5,
     reviews: [
       'Must buy a drink for bathroom access.',
@@ -53,6 +61,8 @@ const bars: Bar[] = [
     id: 4,
     name: 'Monkey Hill Bar',
     address: '6100 Magazine St, New Orleans, LA',
+    lat: 29.9226458,
+    lng: -90.1236287,
     rating: 4,
     reviews: [
       'Free to use bathroom with short wait time.',
@@ -65,6 +75,8 @@ const bars: Bar[] = [
     id: 5,
     name: 'Santos Bar',
     address: '1135 Decatur St, New Orleans, LA',
+    lat: 29.9605930,
+    lng: -90.0594665,
     rating: 3,
     reviews: [
       'Free to use bathroom with short wait time.',
@@ -77,6 +89,8 @@ const bars: Bar[] = [
     id: 6,
     name: 'Gasa Gasa',
     address: '4920 Freret St, New Orleans, LA',
+    lat: 29.9348419,
+    lng: -90.1079091,
     rating: 3,
     reviews: [
       'Bathroom access policy not sure.',
@@ -90,6 +104,8 @@ const bars: Bar[] = [
     id: 7,
     name: 'Ms. Mae\'s',
     address: '4336 Magazine St, New Orleans, LA',
+    lat: 29.9206505,
+    lng: -90.1011973,
     rating: 2,
     reviews: [
       'Must buy a drink for bathroom access.',
@@ -103,6 +119,8 @@ const bars: Bar[] = [
     id: 8,
     name: 'Big Easy Daiquiris',
     address: '501 Bourbon St, New Orleans, LA',
+    lat: 29.9572425,
+    lng: -90.0670932,
     rating: 4,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -115,6 +133,8 @@ const bars: Bar[] = [
     id: 9,
     name: 'St. Joes Bar',
     address: '5535 Magazine St, New Orleans, LA',
+    lat: 29.9212893,
+    lng: -90.1169407,
     rating: 5,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -128,6 +148,8 @@ const bars: Bar[] = [
     id: 10,
     name: 'Big Easy Daiquiris',
     address: '216 Bourbon St, New Orleans, LA',
+    lat: 29.9549724,
+    lng: -90.0687953,
     rating: 3,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -140,6 +162,8 @@ const bars: Bar[] = [
     id: 11,
     name: 'Big Easy Daiquiris',
     address: '409 Decatur St, New Orleans, LA',
+    lat: 29.9546701,
+    lng: -90.0649575,
     rating: 3,
     reviews: [
       'Free to use bathroom with no wait time.',
@@ -152,6 +176,8 @@ const bars: Bar[] = [
     id: 12,
     name: 'Saturn Bar',
     address: '3067 St. Claude Ave, New Orleans, LA',
+    lat: 29.9679402,
+    lng: -90.0442263,
     rating: 1,
     reviews: [
       'Free to use bathroom with short wait time.',
@@ -164,6 +190,8 @@ const bars: Bar[] = [
     id: 13,
     name: 'The Dungeon',
     address: '738 Toulouse St, New Orleans, LA',
+    lat: 29.9576548,
+    lng: -90.0662896,
     rating: 4,
     reviews: [
       'Must buy a drink for bathroom access.',
